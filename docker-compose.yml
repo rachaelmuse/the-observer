@@ -1,0 +1,14 @@
+# Optional. Slice 1 does not require Docker.
+# Default launch is LAUNCH_OBSERVER.bat with SQLite.
+services:
+  observer:
+    image: python:3.11-slim
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "8730:8730"
+    command: python -m uvicorn observer.api:app --host 0.0.0.0 --port 8730
+    environment:
+      OBSERVER_DATABASE_URL: sqlite:///./data/observer.db
+      OBSERVER_ARCHIVE_DIR: ./data/archive

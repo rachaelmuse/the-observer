@@ -1,0 +1,34 @@
+:root {
+  color-scheme: dark;
+  --bg: #12141a;
+  --panel: #1b1f29;
+  --ink: #e8e6df;
+  --muted: #9aa3b2;
+  --accent: #c4a574;
+  --line: #2a3140;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); }
+header, .intake, nav, main { padding: 1rem 1.25rem; }
+header h1 { margin: 0 0 0.25rem; font-weight: 600; }
+.principle { color: var(--accent); margin: 0; }
+.identity { color: var(--muted); margin: 0.25rem 0 0; font-size: 0.9rem; }
+.intake { display: grid; gap: 0.5rem; background: var(--panel); border-bottom: 1px solid var(--line); }
+textarea, button { font: inherit; }
+textarea { background: #10131a; color: var(--ink); border: 1px solid var(--line); padding: 0.5rem; }
+button { background: var(--accent); color: #1a140c; border: 0; padding: 0.5rem 0.9rem; cursor: pointer; }
+.tabs { display: flex; flex-wrap: wrap; gap: 0.35rem; border-bottom: 1px solid var(--line); }
+.tabs button { background: var(--panel); color: var(--ink); }
+.tabs button.active { background: var(--accent); color: #1a140c; }
+main { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1rem; }
+#list, #panel, #report { background: var(--panel); border: 1px solid var(--line); padding: 0.75rem; min-height: 12rem; }
+#report { grid-column: 1 / -1; }
+.card { border-bottom: 1px solid var(--line); padding: 0.5rem 0; cursor: pointer; }
+.card:hover { color: var(--accent); }
+.empty, .status { color: var(--muted); }
+pre { white-space: pre-wrap; font-size: 0.85rem; }
+h2, h3 { margin: 0 0 0.5rem; font-weight: 600; }
+@media (max-width: 900px) {
+  main { grid-template-columns: 1fr; }
+}

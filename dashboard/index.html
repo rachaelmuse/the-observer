@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Observer</title>
+  <link rel="stylesheet" href="/static/dashboard.css" />
+</head>
+<body>
+  <header>
+    <h1>The Observer</h1>
+    <p class="principle">Follow the evidence, not the hierarchy.</p>
+    <p class="identity">Independent investigative institution. Not Mythos. Not Vesper.</p>
+  </header>
+  <section class="intake">
+    <label for="question">Investigation question</label>
+    <textarea id="question" rows="3" placeholder="What actually happened?"></textarea>
+    <label for="urls">Optional public URLs (one per line)</label>
+    <textarea id="urls" rows="2" placeholder="https://example.com/page"></textarea>
+    <label class="check"><input type="checkbox" id="search" checked /> Run public web search</label>
+    <button id="run">Run investigation</button>
+    <p id="status" class="status"></p>
+  </section>
+  <nav class="tabs">
+    <button data-tab="investigations">Investigations</button>
+    <button data-tab="evidence">Evidence</button>
+    <button data-tab="sources">Sources</button>
+    <button data-tab="claims">Claims</button>
+    <button data-tab="entities">Entities</button>
+    <button data-tab="relationships">Relationships</button>
+    <button data-tab="timeline">Timeline</button>
+    <button data-tab="hypotheses">Hypotheses</button>
+    <button data-tab="contradictions">Contradictions</button>
+    <button data-tab="confidence">Confidence</button>
+    <button data-tab="queue">Research queue</button>
+    <button data-tab="audit">Audit history</button>
+    <button data-tab="registry">Registry</button>
+  </nav>
+  <main>
+    <section id="list"></section>
+    <aside id="panel">
+      <h2>Entity</h2>
+      <p class="empty">Click an entity to see WHO / WHAT / WHEN / WHERE / MONEY / RELATIONSHIPS / DOCUMENTS / CLAIMS / CONTRADICTIONS / SOURCE HISTORY.</p>
+      <pre id="panel-body"></pre>
+    </aside>
+    <article id="report"></article>
+  </main>
+  <script src="/static/dashboard.js"></script>
+</body>
+</html>
