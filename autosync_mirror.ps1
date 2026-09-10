@@ -46,6 +46,20 @@ $dirty = ($st | Measure-Object).Count
 git add -A 2>$null
 if ($LASTEXITCODE -ne 0) { Log "FAIL: git add exit $LASTEXITCODE"; Pop-Location; exit 1 }
 
+# 2c. mass-deletion guard (Sep-10 colibri incident: 14 upstream files deleted
+#     by an unidentified process; D: is exFAT, no USN journal - never attributed).
+#     A deletion-ONLY staged set (>=10 gone, nothing added/modified) is the
+#     sweep shape: abort for human review instead of faithfully publishing it.
+#     Small legit cleanup batches still sync; files stay in history either way.
+$delCount = (git diff --cached --name-only --diff-filter=D 2>$null | Measure-Object).Count
+$addCount = (git diff --cached --name-only --diff-filter=AM 2>$null | Measure-Object).Count
+if ($delCount -ge 10 -and $addCount -eq 0) {
+    Log "ABORT: mass-deletion pattern ($delCount deleted, $addCount added/modified) - sweep shape detected; unstaged, needs human review"
+    git reset 2>$null | Out-Null
+    Pop-Location
+    exit 3
+}
+
 # 3. SECRET GATE over the exact staged set (filenames only; values never logged)
 # NOTE: pattern must contain NO quote characters - PS 5.1 mangles native args
 # containing quotes, which breaks the pathspec below and makes the gate scan
