@@ -16,3 +16,6 @@ build/
 .cursor/
 tmp_probe.py
 tmp_*.py
+
+# runtime logs incl rotated .err (Apex-style log hygiene)
+data/*.log*

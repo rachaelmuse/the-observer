@@ -230,3 +230,65 @@ class PublicSubmissionRow(Base):
     content_hash: Mapped[str] = mapped_column(String(64), default="")
     investigation_id: Mapped[str] = mapped_column(String(64), default="")
     kind: Mapped[str] = mapped_column(String(40), default="submission")
+
+
+class ClaimStatusHistoryRow(Base):
+    """Append-only claim assessments. Corrections do not erase prior rows."""
+
+    __tablename__ = "claim_status_history"
+
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    claim_id: Mapped[str] = mapped_column(String(64), nullable=False)
+    investigation_id: Mapped[str] = mapped_column(ForeignKey("investigations.id"), nullable=False)
+    previous_status: Mapped[str] = mapped_column(String(40), default="")
+    new_status: Mapped[str] = mapped_column(String(40), nullable=False)
+    reason: Mapped[str] = mapped_column(Text, default="")
+    evidence_refs: Mapped[str] = mapped_column(Text, default="[]")
+    actor: Mapped[str] = mapped_column(String(80), default="observer")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
+
+
+class ExaminerFindingRow(Base):
+    __tablename__ = "examiner_findings"
+
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    investigation_id: Mapped[str] = mapped_column(ForeignKey("investigations.id"), nullable=False)
+    claim_id: Mapped[str] = mapped_column(String(64), default="")
+    investigator_status: Mapped[str] = mapped_column(String(40), default="")
+    examiner_status: Mapped[str] = mapped_column(String(40), nullable=False)
+    agrees: Mapped[bool] = mapped_column(Boolean, default=False)
+    challenge: Mapped[str] = mapped_column(Text, default="")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
+
+
+class ObserverErrorRow(Base):
+    __tablename__ = "observer_errors"
+
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    investigation_id: Mapped[str] = mapped_column(String(64), default="")
+    description: Mapped[str] = mapped_column(Text, nullable=False)
+    original_statement: Mapped[str] = mapped_column(Text, default="")
+    correct_information: Mapped[str] = mapped_column(Text, default="")
+    cause: Mapped[str] = mapped_column(Text, default="")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
+
+
+class BlindSpotRow(Base):
+    __tablename__ = "observer_blind_spots"
+
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    investigation_id: Mapped[str] = mapped_column(String(64), default="")
+    kind: Mapped[str] = mapped_column(String(80), default="unavailable_network")
+    detail: Mapped[str] = mapped_column(Text, default="")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
+
+
+class AccessFailureRow(Base):
+    __tablename__ = "access_failures"
+
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    investigation_id: Mapped[str] = mapped_column(String(64), default="")
+    source: Mapped[str] = mapped_column(Text, default="")
+    failure_type: Mapped[str] = mapped_column(String(80), default="UNKNOWN")
+    reason: Mapped[str] = mapped_column(Text, default="")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)

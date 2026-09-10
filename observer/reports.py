@@ -4,15 +4,19 @@ from __future__ import annotations
 
 from observer.audit import latest_audit
 from observer.contradictions import list_contradictions
+from observer.core import EpistemicKind
 from observer.db import session_scope
+from observer.epistemic import INQUIRY_SLOTS, build_inquiry_frame
 from observer.graph import list_entities, list_relationships
 from observer.hypotheses import list_conclusions, list_hypotheses
 from observer.ledger import list_evidence
 from observer.models import ClaimRow, InvestigationRow, ResearchRecordRow
+from observer.questions import generate_questions
 from observer.sources import list_sources
 
 REQUIRED_SECTIONS = [
     "executive_summary",
+    "inquiry",
     "what_we_know",
     "what_we_do_not_know",
     "evidence",
@@ -57,7 +61,11 @@ def build_report(investigation_id: str) -> dict:
     primary = next((h for h in hyps if not h["is_counter"]), hyps[0] if hyps else None)
     counter = next((h for h in hyps if h["is_counter"]), None)
 
-    known = [c.text for c in claims if c.status in {"documented", "corroborated"}]
+    known = [
+        c.text
+        for c in claims
+        if c.status in {"documented", "corroborated", "verified", "partially_verified"}
+    ]
     unknown = [
         "Independent corroboration from a second publisher is missing."
         if evidence
@@ -87,11 +95,36 @@ def build_report(investigation_id: str) -> dict:
         for rec in records
     ]
 
+    who_names = [e.get("name") for e in entities if isinstance(e, dict) and e.get("name")]
+    what_known = next((c for c in known if c and c != "No claim has reached documented/corroborated status."), None)
+    when_obs = None
+    if isinstance(timeline, list) and timeline:
+        when_obs = timeline[0].get("when")
+    how_hyp = (primary or {}).get("text") if primary else None
+    inquiry = build_inquiry_frame(
+        who=", ".join(who_names) if who_names else None,
+        what=what_known,
+        when=when_obs,
+        where=None,
+        possible_how=how_hyp,
+        possible_why=None,
+        who_kind=EpistemicKind.FACT.value if who_names else EpistemicKind.UNKNOWN.value,
+        what_kind=EpistemicKind.FACT.value if what_known else EpistemicKind.UNKNOWN.value,
+        when_kind=EpistemicKind.FACT.value if when_obs else EpistemicKind.UNKNOWN.value,
+        where_kind=EpistemicKind.UNKNOWN.value,
+        how_kind=EpistemicKind.HYPOTHESIS.value,
+        why_kind=EpistemicKind.HYPOTHESIS.value,
+        question=question,
+    )
+    inquiry["questions"] = generate_questions(question).get("INQUIRY") or []
+    inquiry["slots_required"] = list(INQUIRY_SLOTS)
+
     report = {
         "investigation_id": investigation_id,
         "question": question,
         "status": status,
-        "epistemic_note": "FACT, ANALYSIS, INFERENCE, HYPOTHESIS, ALLEGATION, OPINION, and UNKNOWN are not interchangeable.",
+        "inquiry": inquiry,
+        "epistemic_note": "FACT, ANALYSIS, INFERENCE, HYPOTHESIS, ALLEGATION, OPINION, and UNKNOWN are not interchangeable. Who/what/when/where may be observed. How and why are possible until a mechanism is established.",
         "executive_summary": (
             f"Investigation of {question!r}. "
             f"{len(sources)} source(s), {len(evidence)} evidence item(s), {len(hyps)} hypotheses. "
@@ -126,6 +159,8 @@ def build_report(investigation_id: str) -> dict:
             "status": "unavailable",
             "note": "Independent GPT/Grok/DeepSeek review is not seated. Disagreement cannot be manufactured.",
         },
+        "we_report_what_we_find": True,
+        "epistemic_standard": "docs/OBSERVER_EPISTEMIC_STANDARD.md",
         "public_challenges": [],
         "reproducibility_package": {
             "source_urls": [s.get("url") for s in sources if s.get("url")],

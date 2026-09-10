@@ -157,6 +157,18 @@ def entity_panel(investigation_id: str, entity_id: str) -> dict:
             "WHAT": ent.entity_type,
             "WHEN": "no dated events recorded" if not rels else "see relationships",
             "WHERE": "not recorded",
+            "POSSIBLE_HOW": {
+                "value": "UNKNOWN",
+                "status": "POSSIBLE",
+                "kind": "hypothesis",
+                "note": "mechanism not established",
+            },
+            "POSSIBLE_WHY": {
+                "value": "UNKNOWN",
+                "status": "POSSIBLE",
+                "kind": "hypothesis",
+                "note": "in many cases why remains possible, not proven",
+            },
             "MONEY": money or "no money relationships recorded",
             "RELATIONSHIPS": rels or "no relationships recorded",
             "DOCUMENTS": "see sources on investigation",

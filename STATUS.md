@@ -14,8 +14,12 @@ Identity, SQLite ledger, audit log, question engine, human-nature dual explanati
 
 ## Not wired (UNAVAILABLE)
 
-Four independent model reviewers, public forks, malware screening, Neo4j, PostgreSQL, Redis, FAISS/Qdrant, Ollama extractor (unless configured and proven), Media/Hollywood specialized scrapers, documentary/cinematic/DaVinci package, auto-publish, Mythos/Vesper supervisor channel.
+Four independent model reviewers (GPT / Grok / DeepSeek / human desks: `ReviewerAdapter` exists, status **UNAVAILABLE / NOT CONFIGURED**, no simulated analysis), public forks, malware screening, Neo4j, PostgreSQL, Redis, FAISS/Qdrant, Ollama extractor (unless configured and proven), Media/Hollywood specialized scrapers, documentary/cinematic/DaVinci package, auto-publish, Mythos/Vesper supervisor channel.
+
+Canonical freeze 2026-09-01: this tree on **:8730** remains the only Observer. Zip `app.main` / `:8000` is research-only. Family identities are not Observer agents.
 
 ## Tests
 
-`python -m pytest tests -v`
+`python -m pytest tests -v` — **122 passed** (2026-09-01), including epistemic integrity and source-universe suites. Prior count **85**.
+
+Epistemic law: `docs/OBSERVER_EPISTEMIC_STANDARD.md`. Build amendment: `docs/SPEC.md`. Audit: `docs/OBSERVER_EPISTEMIC_INTEGRITY_AUDIT.md`.

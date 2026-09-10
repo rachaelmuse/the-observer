@@ -60,6 +60,29 @@ CATEGORIES: dict[str, list[str]] = {
         "What is the strongest deliberate-coordination explanation?",
         "What evidence distinguishes them?",
     ],
+    "INQUIRY": [
+        "Who?",
+        "What?",
+        "When?",
+        "Where?",
+        "Possible how — mechanism candidate; not fact until tested.",
+        "Possible why — in many cases why remains possible, not proven.",
+    ],
+    "PLACE": [
+        "Where did it happen?",
+        "Where was it reported?",
+        "Where is evidence missing?",
+    ],
+    "MECHANISM": [
+        "How is this possible?",
+        "What mechanism is documented vs inferred?",
+        "Do not treat possible how as established fact.",
+    ],
+    "MOTIVE": [
+        "Why might this have happened?",
+        "In many cases why remains possible, not proven.",
+        "What would distinguish motive from coincidence?",
+    ],
 }
 
 

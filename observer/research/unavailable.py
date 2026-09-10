@@ -35,3 +35,6 @@ four_reviewers = UnavailableAdapter("four_reviewers", "independent model reviewe
 UNAVAILABLE_ADAPTERS = [
     four_reviewers,
 ]
+
+# Named GPT/Grok/DeepSeek/human desks stay UNAVAILABLE until a real adapter + credentials exist.
+# Do not import simulated analysis from any zip Observer.

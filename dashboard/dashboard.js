@@ -146,6 +146,7 @@ function bindEntityClicks() {
 function renderReport(report) {
   const sections = [
     ["Executive Summary", report.executive_summary],
+    ["Inquiry (who / what / when / where / possible how / possible why)", report.inquiry],
     ["What We Know", report.what_we_know],
     ["What We Do Not Know", report.what_we_do_not_know],
     ["Conclusion", report.conclusion],

@@ -17,6 +17,7 @@ from observer.audit import latest_audit, list_events
 from observer.contradictions import list_contradictions
 from observer.core import InvestigationStatus, now
 from observer.db import init_db, session_scope
+from observer.federation_desk import audit_federation_desk
 from observer.graph import entity_panel, list_entities, list_relationships
 from observer.hypotheses import list_conclusions, list_hypotheses
 from observer.identity import identity
@@ -94,6 +95,21 @@ def registry() -> dict:
 @app.get("/audit")
 def audit_history() -> dict:
     return {"events": list_events()}
+
+
+@app.get("/federation/audit")
+def federation_audit() -> dict:
+    """Read D:\\Court\\federation. Observer does not own the family."""
+    report = audit_federation_desk()
+    if not report.get("ok"):
+        raise HTTPException(status_code=404, detail=report)
+    audit_mod.record(
+        "federation_desk",
+        actor="the_observer",
+        target="federation",
+        detail="read-only audit; no ownership",
+    )
+    return report
 
 
 @app.post("/investigations")

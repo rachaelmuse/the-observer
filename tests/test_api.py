@@ -72,3 +72,6 @@ def test_run_investigation_via_api(db, monkeypatch):
             eid = detail["entities"][0]["id"]
             panel = client.get(f"/investigations/{iid}/entities/{eid}").json()
             assert "WHO" in panel
+            assert "WHERE" in panel
+            assert "POSSIBLE_HOW" in panel
+            assert "POSSIBLE_WHY" in panel

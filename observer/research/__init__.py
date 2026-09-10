@@ -5,6 +5,13 @@ from observer.research.http_fetch import HttpFetchAdapter
 from observer.research.patents import PatentsAdapter
 from observer.research.procurement import ProcurementAdapter
 from observer.research.sec import SecFilingsAdapter
+from observer.research.reviewer import (
+    UnavailableReviewer,
+    deepseek_reviewer,
+    gpt_reviewer,
+    grok_reviewer,
+    human_reviewer,
+)
 from observer.research.unavailable import UNAVAILABLE_ADAPTERS
 from observer.research.url_intake import UrlIntakeAdapter
 from observer.research.wayback import WaybackAdapter
@@ -22,4 +29,9 @@ __all__ = [
     "PatentsAdapter",
     "ProcurementAdapter",
     "UNAVAILABLE_ADAPTERS",
+    "UnavailableReviewer",
+    "gpt_reviewer",
+    "grok_reviewer",
+    "deepseek_reviewer",
+    "human_reviewer",
 ]

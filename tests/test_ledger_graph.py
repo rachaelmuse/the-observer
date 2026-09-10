@@ -73,4 +73,6 @@ def test_inferred_relationship_is_labeled(db):
     assert edges[0][2]["inferred"] is True
     panel = entity_panel(iid, x["id"])
     assert panel["WHO"]["name"] == "Alpha Corp"
+    assert panel["POSSIBLE_HOW"]["status"] == "POSSIBLE"
+    assert panel["POSSIBLE_WHY"]["kind"] == "hypothesis"
     assert panel["MONEY"] != []

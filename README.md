@@ -10,7 +10,7 @@ The Observer investigates the world as it actually exists. Loyalty is to evidenc
 
 **Show the work.** Here is what we found. Here is where it came from. Here is what we know. Here is what we don’t know. Here is where we disagree. Here is what could prove us wrong. Consensus is not proof.
 
-Spec map: `docs/SPEC.md`. Charter: `CHARTER.md`.
+Spec map: `docs/SPEC.md`. Charter: `CHARTER.md`. Epistemic law: `docs/OBSERVER_EPISTEMIC_STANDARD.md`.
 
 Other systems may *request* an investigation. They cannot supervise conclusions, write the evidence ledger, or silently alter source assessments.
 

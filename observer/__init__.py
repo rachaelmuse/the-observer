@@ -18,6 +18,7 @@ IDENTITY = {
         "merovin",
         "draven",
         "montage",
+        "aster",
         "hearth",
         "mom",
         "cursor",
@@ -30,6 +31,8 @@ IDENTITY = {
         "political_agent",
         "conspiracy_engine",
         "propaganda_engine",
+        "soft_server",
+        "news_summarizer",
     ],
 }
 

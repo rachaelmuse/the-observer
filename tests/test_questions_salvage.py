@@ -15,10 +15,16 @@ def test_question_engine_covers_required_categories():
         "TIMELINE",
         "INFORMATION",
         "ALTERNATIVE_EXPLANATIONS",
+        "INQUIRY",
+        "PLACE",
+        "MECHANISM",
+        "MOTIVE",
     ):
         assert key in qs
         assert qs[key]
         assert qs[key] == CATEGORIES[key]
+    assert qs["INQUIRY"][0] == "Who?"
+    assert "Possible why" in qs["INQUIRY"][-1]
 
 
 def test_human_nature_compares_ordinary_and_manipulation():

@@ -9,11 +9,17 @@ from hashlib import sha256
 class ClaimStatus(str, Enum):
     DOCUMENTED = "documented"
     CORROBORATED = "corroborated"
+    PARTIALLY_VERIFIED = "partially_verified"
+    VERIFIED = "verified"
     PLAUSIBLE = "plausible"
     UNVERIFIED = "unverified"
+    REPORTED = "reported"
     CONTRADICTED = "contradicted"
+    DISPUTED = "disputed"
     DISPROVEN = "disproven"
     SPECULATIVE = "speculative"
+    INSUFFICIENT_EVIDENCE = "insufficient_evidence"
+    UNRESOLVED = "unresolved"
     UNKNOWN = "unknown"
 
 
@@ -52,6 +58,7 @@ class EpistemicKind(str, Enum):
     HYPOTHESIS = "hypothesis"
     ALLEGATION = "allegation"
     OPINION = "opinion"
+    MODEL_GENERATED = "model_generated"
     UNKNOWN = "unknown"
 
 

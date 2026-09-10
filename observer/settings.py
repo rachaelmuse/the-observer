@@ -22,6 +22,8 @@ class Settings(BaseSettings):
     ollama_model: str = ""
     brave_search_api_key: str = ""
     courtlistener_token: str = ""
+    federation_root: str = r"D:\Court\federation"
+    living_home_root: str = r"G:\The-Axiom-Codex\Mythos-Living-Home"
 
 
 def load_settings() -> Settings:

@@ -11,7 +11,8 @@ Public research desks through procurement are seated. Phase IV public *intake* i
 
 ## Next task
 
-1. Restart `LAUNCH_OBSERVER.bat` after kernel edits.
-2. Later: independent reviewers only if proven; public forks; malware screen; documentary package. Do not mark them CONNECTED without a test.
+1. Epistemic integrity amendment **seated in docs + gates + tests** (`docs/OBSERVER_EPISTEMIC_STANDARD.md`, audit `docs/OBSERVER_EPISTEMIC_INTEGRITY_AUDIT.md`). Pytest **122 passed**. Live Freenet/I2P/Tor fetch remain **UNAVAILABLE**.
+2. Federation sequence is **paused** in Living Home. Registry lives outside this desk (`D:\Court\federation`). Do not own the family. Do not expand Gemini/Gameworld from this desk.
+3. Later: one real external reviewer only if adapter + credentials are proven; public forks; malware screen; documentary package. Do not mark them CONNECTED without a test.
 
-Do not bolt The Observer onto Mythos. Do not merge with Vesper.
+Do not bolt The Observer onto Mythos. Do not merge with Vesper. Do not install the zip Observer.
