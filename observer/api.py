@@ -37,6 +37,20 @@ DASHBOARD = Path(__file__).resolve().parent.parent / "dashboard"
 async def lifespan(_app: FastAPI):
     init_db()
     seed_registry()
+    # Ollama extractor seat: only proven live if a real probe succeeds NOW.
+    # (docs/unavailable/README.md: 'unproven unless configured and tested')
+    try:
+        from observer.research.ollama_extractor import probe
+        from observer.registry import mark_connected
+        import os
+        p = probe()
+        if p["status"] == "CONNECTED":
+            mark_connected(
+                "ollama_extractor",
+                f"live probe passed: {p.get('reason','')} (OLLAMA_MODEL set)",
+            )
+    except Exception:
+        pass  # stays UNAVAILABLE - never fake it
     yield
 
 

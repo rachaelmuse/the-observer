@@ -14,7 +14,11 @@ Identity, SQLite ledger, audit log, question engine, human-nature dual explanati
 
 ## Not wired (UNAVAILABLE)
 
-Four independent model reviewers (GPT / Grok / DeepSeek / human desks: `ReviewerAdapter` exists, status **UNAVAILABLE / NOT CONFIGURED**, no simulated analysis), public forks, malware screening, Neo4j, PostgreSQL, Redis, FAISS/Qdrant, Ollama extractor (unless configured and proven), Media/Hollywood specialized scrapers, documentary/cinematic/DaVinci package, auto-publish, Mythos/Vesper supervisor channel.
+Four independent model reviewers (GPT / Grok / DeepSeek / human desks: `ReviewerAdapter` exists, status **UNAVAILABLE / NOT CONFIGURED**, no simulated analysis), public forks, malware screening, Neo4j, PostgreSQL, Redis, FAISS/Qdrant, Media/Hollywood specialized scrapers, documentary/cinematic/DaVinci package, auto-publish, Mythos/Vesper supervisor channel.
+
+## Newly seated (2026-09-15, Buffy)
+
+**ollama_extractor CONNECTED** — configured (`OLLAMA_MODEL=llama3.2:3b`) and PROVEN live: real Ollama round-trip probe (`PROBE-OK`) + claim-extraction test (6 atomic claims from a sample document, each machine-proposed and UNVERIFIED per epistemic law). Seating mechanism: startup probe in `api.py` lifespan + `observer/research/ollama_extractor.py` (honest adapter: no simulation, heuristic extractor remains primary). `tests/__init__.py` added to restore the 122-test baseline (6 pre-existing httpx/Starlette env-failures unchanged, present on pristine tree).
 
 Canonical freeze 2026-09-01: this tree on **:8730** remains the only Observer. Zip `app.main` / `:8000` is research-only. Family identities are not Observer agents.
 
